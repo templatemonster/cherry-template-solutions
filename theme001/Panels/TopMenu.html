@@ -1,0 +1,50 @@
+%%GLOBAL_OptimizerLinkScript%%
+<div class="TopMenu">
+<div class="container">
+<div class="row" style="display:%%GLOBAL_HidePurchasingOptions%%">
+    <div class="col-sm-4 topmenu_left">
+        <ul>
+            %%SNIPPET_TopMenuGiftCertificates%%
+            <li style="display:%%GLOBAL_HideWishlist%%" class="wishLink">
+                <a href="%%GLOBAL_ShopPath%%/wishlist.php">Wish Lists</a>
+            </li>
+            <li style="%%GLOBAL_LiveChatCodeEnabled%%" class="HeaderLiveChat">
+                %%GLOBAL_LiveChatCode%%
+            </li>
+        </ul>
+    </div>
+
+    <div class="col-sm-4 topmenu_center">
+        <ul></ul>
+    </div>
+
+    <div class="col-sm-4 topmenu_right">
+        <div class="js-drawermenu-currency-converter">
+            <div class="currency-converter">
+                <p>%%GLOBAL_AllPricesAreInCurrency%%</p>
+                %%Panel.SideCurrencySelector%%
+            </div>
+        </div>
+        <div class="js-drawermenu-store-phone-container" %%GLOBAL_ShowStorePhoneNumber%%>
+            <div class="phoneIcon"><i class="fa fa-mobile-phone"></i> <span class="js-drawermenu-store-phone">%%GLOBAL_StorePhoneNumber%%</span></div>
+        </div>
+    </div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+//<![CDATA[
+$(document).ready(function() {
+    var GlobalFname = "%%GLOBAL_CurrentCustomerFirstName%%";
+    if (GlobalFname!="" && GlobalFname!="Guest") {
+    //Customer is Logged On
+        $('.topmenu_center ul').html('<li><a href="%%GLOBAL_ShopPath%%/account.php">%%LNG_YourAccount%%</a></li><li><a href="%%GLOBAL_ShopPath%%/login.php?action=logout">Sign out</a></li>');
+    }
+    else {
+    //Customer is not Logged On
+        $('.topmenu_center ul').html('<li><a href="%%GLOBAL_ShopPath%%/account.php">%%LNG_YourAccount%%</a></li><li><a href="%%GLOBAL_ShopPath%%/login.php">Login</a></li><li><a href="%%GLOBAL_ShopPath%%/login.php?action=create_account">Create an account</a></li>');
+    }
+});
+  //]]>
+ </script>
+

@@ -1,0 +1,54 @@
+.flexslider {
+    position: relative;
+    border-radius: 0;
+    box-shadow: none;
+    border: 0;
+}
+
+.slide-show {
+    margin-bottom: 20px !important;
+}
+
+.slide-show h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 48px;
+    font-weight: 300;
+    text-shadow: 0 0 .5em rgba(0,0,0,1);
+}
+
+.slide-show .btn {
+    font-size: 16px;
+}
+
+.slide-show li.slide {
+    position: relative;
+}
+
+.slide-show .slide-text {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 300;
+    text-shadow: 0 0 .5em rgba(0,0,0,1);
+}
+
+.flex-control-nav {
+    bottom: 20px !important;
+}
+
+.slide-show .slide-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 35%;
+    text-align: center;
+}
+
+.flex-direction-nav .flex-next {
+    background-position: 100% 0;
+    right: 25px;
+}
+
+.flex-direction-nav .flex-prev {
+    left: 25px;
+}

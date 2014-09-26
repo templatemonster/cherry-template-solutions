@@ -1,0 +1,20 @@
+/* this file provides theme-specific styles that affect the carousel
+ *
+ * these changes have been placed in a separate file because they are included
+ * in the control panel when the carousel is being previewed
+ *
+ * they cannot be included in slide-show.css because that is compiled
+ * automatically from slide-show.scss */
+
+/* fixes incorrect width created by the `slide' transition in the admin preview
+ * modal */
+
+.slider_container {width: auto !important;margin: 0 auto;padding: 0 !important;}
+.slide-show {margin: 0 !important;}
+
+
+@media screen and (max-width: 767px) {
+
+.flex-control-nav {padding: 15px 0 0 0;}
+
+}

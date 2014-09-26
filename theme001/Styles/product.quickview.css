@@ -1,0 +1,164 @@
+/* QuickView start */
+.QuickViewBtn a,
+.QuickViewBtn a:hover {text-decoration: none !important;}
+
+.QuickViewBtn {background: #000;background: rgba(0,0,0,.7);padding: 10px;font-size: 12px;color: #fff;position: absolute;left: 20%;right: 20%;cursor: pointer;}
+/* QuickView end */
+
+
+
+/* QuickView modal window start */
+#ModalContainer.QuickViewModal {background: #fff;border: 0px solid #333;
+-webkit-border-radius: 0;
+   -moz-border-radius: 0;
+        border-radius: 0;
+
+-webkit-box-shadow: none;
+   -moz-box-shadow: none;
+        box-shadow: none;
+}
+
+#ModalContainer.QuickViewModal .modalData {height: 100%;}
+
+#ModalContainer.QuickViewModal .ModalTitle {display: none !important;}
+
+#ModalContainer.QuickViewModal .ModalContent {height: auto;margin: 0 0 0 0;padding: 0 0 0 0;}
+
+.QuickViewModal .modalClose {right: 10px !important;top: 12px !important;}
+
+.QuickViewModal .addToCart .Button {margin-right: 5px;}
+
+html.javascript .productOptionViewRectangle .option label {border: 1px solid #d6d6d6;}
+
+/* highlighting of the border for the currently selected rectangle value */
+html.javascript .productOptionViewRectangle .selectedValue label {background: #6a6a6a !important;border: 1px solid #6a6a6a;color: #ffffff !important;}
+/* QuickView modal window end */
+
+
+
+/* QuickView top nav panel start */
+#QuickViewTopNav {padding: 5px 10px;background-color: #DDDDDD;line-height: 20px;}
+
+#QuickViewFacebookContainer,
+#QuickViewShareLabel,
+#QuickViewShareLinksContainer {height: 20px;float: none;clear: both;text-align: center;}
+
+.addthis_default_style
+.addthis_separator,
+.addthis_default_style .at300b,
+.addthis_default_style .at300bo,
+.addthis_default_style .at300m,
+.addthis_default_style .at300bs {display: inline-block;float: none;margin: 0 2px;
+*display: inline;
+zoom: 1;
+}
+
+
+#QuickViewTopNav .facebookLikeBtn {width: 80px;height: 22px;}
+
+#QuickViewTopNav .facebookRecommendBtn {width: 125px;height: 22px;}
+
+#QuickViewTopNavReviews, #QuickViewTopNavRating {float: left !important;margin-left: 7px;}
+
+#QuickViewTopNavRating img {width: 13px;height: 13px;margin-top: 3px;}
+
+#QuickViewShareLinksContainer {padding: 15px;}
+#QuickViewFacebookContainer {padding: 0 15px;}
+/* QuickView top nav panel end */
+
+
+
+/* QuickView content start */
+#QuickViewContent {margin: 0 auto;position: relative;}
+
+.ProductThumbImage {width: 100%;display: table;table-layout: fixed;overflow: hidden;text-align: center;position: relative;}
+
+.quick-view-image-container {width: 50%;float: left;}
+
+#QuickViewImage img{max-width: 100%;width: auto !important;max-height: 400px;height: auto !important;}
+
+.scrollContainer table tbody tr td {margin: 0;}
+
+.scrollContainer td.none .image {display: none;}
+/* QuickView content end */
+
+
+
+/* QuickView product details start */
+.quick-view-product-details-container {overflow: hidden;padding-left: 20px;position: relative;}
+.quick-view-product-details-container h4 {padding: 0;}
+
+.quick-view-product-details-container div.productAttributeFluidWidth {width: auto !important;}
+
+.quick-view-product-details-container table.productDetails {width: 99%;vertical-align: top;margin: 0;padding: 0;border: none;text-align: left;}
+
+.quick-view-product-details-container .ProductAddToCart ul,
+.quick-view-product-details-container .ProductAddToCart ul li {list-style-type: none;margin-left: 0;padding-left: 0;}
+
+.quick-view-product-details-container .required,
+.quick-view-product-details-container .Required {display: block;color: red;position: absolute;left: -10px;top: 0px;}
+
+.quick-view-product-details-container .s-price .Label,
+.quick-view-product-details-container .s-price .Value {float: left;}
+
+.leftPanel {clear: both;}
+/* QuickView product details start */
+
+
+
+/* QuickView buttons start */
+.quick-view-product-details-container button {display: inline-block;vertical-align: middle;padding: 3px 8px;background: #F3F3F3;border: solid 1px #D9D9D9;font-size: 11px;line-height: 18px;color: #444;text-decoration: none;cursor: pointer;
+text-shadow: 0 1px 0 #fff;
+
+-webkit-border-radius: 2px;
+   -moz-border-radius: 2px;
+        border-radius: 2px;
+
+-webkit-transition: border-color .20s;
+   -moz-transition: border-color .20s;
+     -o-transition: border-color .20s;
+        transition: border-color .20s;
+}
+
+.quick-view-product-details-container button:hover {background: #fff;border-color: #C0C0C0;color: #333;}
+
+.quick-view-product-details-container button:active {border-color: #4D90FE;color: #4D90FE;
+-webkit-box-shadow: inset 0 0 10px #D4D4D4;
+   -moz-box-shadow: inset 0 0 10px #D4D4D4;
+        box-shadow: inset 0 0 10px #D4D4D4;
+}
+
+.quick-view-product-details-container button.blue {border: 1px solid #3079ED !important;color: #fff;
+background: #4B8DF8;
+background: -webkit-linear-gradient(top, #4C8FFD, #4787ED);
+background: -moz-linear-gradient(top, #4C8FFD, #4787ED);
+background: -ms-linear-gradient(top, #4C8FFD, #4787ED);
+background: -o-linear-gradient(top, #4C8FFD, #4787ED);
+background: linear-gradient(top, #4C8FFD, #4787ED);
+
+-webkit-transition: border .20s;
+   -moz-transition: border .20s;
+    -ms-transition: border .20s;
+     -o-transition: border .20s;
+        transition: border .20s;
+}
+
+.quick-view-product-details-container button.blue:hover {border: 1px solid #2F5BB7 !important;
+background: #3F83F1;
+background: -webkit-linear-gradient(top, #4D90FE, #357AE8);
+background: -moz-linear-gradient(top, #4D90FE, #357AE8);
+background: -ms-linear-gradient(top, #4D90FE, #357AE8);
+background: -o-linear-gradient(top, #4D90FE, #357AE8);
+background: linear-gradient(top, #4D90FE, #357AE8);
+}
+
+.quick-view-product-details-container button.addToCart {font-weight: bold;text-transform: uppercase;}
+
+.quick-view-product-details-container .addToCart {vertical-align: middle;}
+/* QuickView buttons end */
+
+
+
+#ProductDetails div.dateselector {display: inline;}
+
+#uniform-qty_ {width: 75px !important;}

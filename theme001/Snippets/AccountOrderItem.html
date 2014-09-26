@@ -1,0 +1,24 @@
+<li class="li-list">
+	<div class="btns">
+		<form action="%%GLOBAL_ShopPath%%/account.php" method="get">
+			<input type="hidden" name="action" value="view_order">
+			<input type="hidden" name="order_id" value="%%GLOBAL_OrderId%%">
+			<input type="submit" class="btn" value="%%LNG_ViewOrder%%" style="display:%%GLOBAL_DisableViewButton%%" >
+		</form>
+		<form action="%%GLOBAL_ShopPath%%/account.php" method="get" style="display: %%GLOBAL_DisableReturnButton%%;" >
+			<input type="hidden" name="action" value="new_return" />
+			<input type="hidden" name="order_id" value="%%GLOBAL_OrderId%%" />
+			<input type="submit" class="btn alt btn-clear" value="%%LNG_HC_returnitem%%">
+			&nbsp;
+		</form>
+	</div>
+	<h4>%%LNG_Order%% #%%GLOBAL_OrderId%%</h4>
+	<p class="Meta">
+		%%LNG_OrderDate%%: %%GLOBAL_OrderDate%%<br>
+	</p>
+	<strong>%%LNG_YourOrderContainsTheFollowingItems2%%</strong>
+	<ul class="OrderItemList">
+		%%GLOBAL_AccountOrderItemList%%
+	</ul>
+
+</li>

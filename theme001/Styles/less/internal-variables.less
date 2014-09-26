@@ -1,0 +1,54 @@
+/**
+ *   Bigcommerce Blueprint with Less
+ *   – For the Less variables and functions that you don't want available in the Style Editor, declare them in this file.
+ */
+
+// Colors
+@color-primary:                             @color-page-text;       // Dark gray
+@color-secondary:                           @color-links;    // Blue
+@color-tertiary:                            @color-newsletter-background;    // Light gray
+
+// Header
+@color-header-background:                   @color-page-background;
+
+// Footer
+@color-footer-links-background:             @color-footer-bar-background;
+
+// FOOTER
+@footer-background:                         @color-footer-background;
+@footer-links-background:                   @color-footer-links-background;
+
+// TEXT
+@color-page-text:                           @color-primary;
+@color-link:                                @color-primary;
+@color-link-alt:                            @color-secondary;
+@color-heading:                             @color-secondary;
+@color-heading-text:                        @color-primary;
+
+// DESIGN ELEMENTS
+@color-border:                              darken(@color-page-background,15%);
+
+// UI ELEMENTS
+@color-btn:                                 @color-buttons;
+@color-btn-hover:                           darken(@color-btn, 10%);
+@color-btn-alt:                             @color-secondary;
+@color-btn-alt-hover:                       darken(@color-btn-alt,10%);
+
+// Fonts
+@font-page-text:                            "Open Sans", Arial, Sans-serif;
+@font-heading:                              "Open Sans", Arial, Sans-serif;
+@font-heading-text:                         @font-page-text;
+
+// Settings
+@setting-page-width:                        80%;
+@setting-page-max-width:                    960px;
+@setting-product-columns:                   5;
+
+//PAGE
+@page-background:                           @color-page-background;
+
+// DESIGN ELEMENTS
+@border-style:                              1px solid @color-border;
+
+// LAYOUT
+@product-column-width:                      percentage(100/@setting-product-columns/100);

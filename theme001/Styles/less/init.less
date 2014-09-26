@@ -1,0 +1,395 @@
+/**
+ *   Bigcommerce Blueprint
+ *   Style Initialisation
+ */
+
+
+.SortBox,
+.AddToWishlistLink .wishlist-button {
+    color: @color-primary;
+}
+
+.TopMenu {
+    color: @color-top-menu-text;
+    background: @color-top-menu-background;
+}
+
+.TopMenu li {
+    border-right: 1px solid lighten(@color-top-menu-background,25%);
+}
+
+.TopMenu a {
+    color: lighten(@color-top-menu-text,10%);
+}
+
+.TopMenu a:hover {
+    color: lighten(@color-top-menu-text,5%);
+}
+
+.header-logo a {
+    color: @color-store-name;    
+}
+
+.PageMenu .inner {
+    background: @color-menu-background;
+}
+
+.PageMenu a {
+    color: @color-menu-text;
+}
+
+.PageMenu li ul {
+    background: @color-dropdown-background;
+}
+
+.PageMenu li ul li a {
+    color: @color-dropdown-text;
+}
+
+.PageMenu li ul:before {
+    border-color: transparent transparent @color-dropdown-background transparent;
+}
+
+.header {
+    background: @color-header-background;
+}
+
+.page {
+    background: @page-background;
+}
+
+.footer-main {
+    background: @footer-background;
+    color: @color-footer-text;
+}
+
+.footer-main a {
+    color: @color-footer-text;
+}
+
+.footer-main h4 {
+    color: @color-column-headings;
+}
+
+.footer-links {
+    background: @color-footer-bar-background;
+    color: @color-footer-bar-text;
+}
+
+.footer-links a {
+    color: lighten(@color-footer-bar-background, 40%);
+}
+
+.footer-links a:hover {
+    color: lighten(@color-footer-bar-background, 25%);
+}
+
+.newsletter-subscription {
+    background-color: @color-newsletter-background;
+}
+
+.newsletter-subscription h4 {
+    color: @color-newsletter-text;
+}
+
+
+body,
+input, select, textarea,
+input.Textbox, input[type="text"],
+#SearchForm input,
+.HorizontalFormContainer dd .selector span,
+.fastCartTop div,
+.list-icon li {
+    color: @color-page-text;
+}
+
+#SearchForm .Button {
+    background-color: @color-btn-alt;
+}
+
+#ModalContent,
+.ModalContent,
+.CurrencyChooser a span {
+    color: @color-page-text !important;
+}
+
+a,
+.Left li li a,
+.Left #SideCategoryList li a,
+.Left .slist li a,
+.Left .afterSideShopByBrand a,
+.Left #GiftCertificatesMenu li a,
+.Left #SideAccountMenu li a,
+.Left #SideCategoryList li li a,
+.Left .slist li li a,
+.TabNav li.Active a,
+.ModalContent h4 a:hover,
+.footer a:hover {
+    color: @color-link;
+}
+
+.page-content #LayoutColumn2 a.pname,
+#ModalContent a,
+.ModalContent a,
+.recaptchatable a {
+    color: @color-link !important;
+}
+
+.Left li a.active:hover{
+    border-color: @color-link;
+}
+
+.icon-add:hover {
+    background-color: @color-link !important;
+}
+
+.multiStep li a {
+    color: lighten(@color-link, 25%);
+}
+
+.Left li a.active,
+a:hover,
+a.alt, p a, a.NextLink,
+.currency-converter p span,
+.BlockContent.PageContent a,
+.page-content #LayoutColumn2 a,
+.Left #SideCategoryList li a:hover,
+.Left .slist li a:hover,
+.Left .afterSideShopByBrand a:hover,
+.Left #GiftCertificatesMenu li a:hover,
+.Left #SideAccountMenu li a:hover,
+.PageMenu li ul li a:hover,
+.Breadcrumb li a {
+    color: @color-link-alt;
+}
+
+.recaptchatable a:hover,
+.page-content #LayoutColumn2 a.pname:hover,
+#ModalContent a:hover,
+.ModalContent a:hover,
+.Breadcrumb li a:hover {
+    color: @color-link-alt !important;
+}
+
+a.alt:hover {
+    background-color: @color-link-alt;
+    color: lighten(@color-link-alt,100%);
+}
+
+.multiStep li.ActivePage h4 {
+    border-bottom: 4px solid @color-link-alt;
+}
+
+.icon-add {
+    background: @color-link-alt url("../images/add.png") no-repeat scroll 50% 50%;
+}
+
+h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6 {
+    font-family: @font-heading-text;
+    color: @color-heading-text;
+}
+
+h1, .h1 {
+    font-family: @font-heading;
+    color: @color-heading;
+}
+
+.PrimaryProductDetails h1 {
+    color: @color-product-name;
+}
+
+.FeaturedProducts h2,
+.TopSellers h2,
+.NewProducts h2,
+#SimilarProductsByCustomerViews h2 {
+    color: @color-product-list-headings;
+}
+
+.productOptionViewProductPickListWithImage td {
+    border-bottom: 1px dotted @color-border;
+}
+
+.TopMenu li.Flag img.Selected {
+    border: 2px solid @color-border;
+}
+
+.productOptionViewRectangle .option.selectedValue label {
+    border: 1px solid darken(@color-border,20%) !important;
+}
+
+.productOptionPickListSwatch .selectedValue .textureContainer,
+.productOptionPickListSwatch .selectedValue .swatchColours {
+    border: @border-style !important;
+    border-color: darken(@color-border,65%) !important;
+}
+
+.productOptionPickListSwatch .textureContainer,
+.productOptionPickListSwatch .swatchColours,
+.productOptionViewRectangle .option label,
+.recaptchatable #recaptcha_response_field,
+.zoomWrapper,
+#ProductDetails .ProductTinyImageList ul li.selected {
+    border: @border-style !important;
+}
+
+.CurrencyList dd,
+#SearchForm .Button,
+#SearchForm input.Textbox,
+select,
+hr,
+input.Textbox, textarea,
+input[type="text"],
+input[type="password"],
+.QuickSearch,
+.SharePublicWishList,
+.ExpressCheckoutBlock .ExpressCheckoutTitle,
+.TabNav li a,
+.HowToPay,
+.NotifyMessage,
+.QuickSearchResult .QuickSearchResultImage,
+.CurrencyChooser,
+.selected-currency,
+div.uploader,
+div.selector,
+.recaptchatable {
+    border: @border-style;
+}
+
+.ExpressCheckoutBlockCompleted .ExpressCheckoutCompletedContent,
+div.uploader span.action {
+    border-left: @border-style;
+}
+
+.TitleHeading,
+.TabNav {
+    border-bottom: @border-style;
+}
+
+.ProductList .pname {
+    color: @color-product-names;
+}
+
+.ProductList .p-price {
+    color: @color-product-prices;
+}
+
+.ProductList.List .ProductDetails {
+    border-top: @border-style;
+}
+
+.btn {
+    background-color: @color-btn;
+    color: lighten(@color-btn, 100%);
+}
+
+.btn:hover {
+    background-color: @color-btn-hover;
+    color: lighten(@color-btn, 100%);
+}
+
+.btn.alt {
+    background-color: @color-btn-alt;
+    color: lighten(@color-btn-alt, 100%);
+}
+
+a.btn.alt {
+    color: lighten(@color-btn-alt, 100%);
+}
+
+.btn.alt:hover {
+    background-color: @color-btn-alt-hover;
+}
+
+.btn.text {
+    color: lighten(@color-btn, 20%);
+}
+
+.btn.add-to-cart {
+    background-color: @color-add-to-cart-button;
+}
+
+.btn.wishlistTrigger {
+    background-color: @color-add-to-wishlist-button;
+}
+
+.TopMenu > .inner, #Header > .inner, .PageMenu > .inner, .main > .inner, .footer-main > .inner, .footer-links > .inner, .newsletter-subscription > .inner {
+    max-width: @setting-page-max-width;
+    width: @setting-page-width;
+}
+
+#home .ProductList li,
+.productPage .ProductList li {
+    width: @product-column-width;
+}
+
+#prodAccordion .subtitle {
+    color: @color-product-description-titles;
+}
+
+
+/* --- Responsive --- */
+
+/* 768px */
+@media screen and (max-width: 768px) {
+
+    .TabNav li.Active a {
+        border-bottom: @border-style;
+    }
+}
+
+/* 600px */
+@media screen and (max-width: 600px) {
+
+    .BillingDetails, .ShippingDetails {
+        border-top: @border-style;
+    }
+
+}
+
+/* 480px */
+@media screen and (max-width: 480px) {
+
+    #cart-amount .Cart .total {
+        background: @color-primary;
+        color: lighten(@color-primary, 100%);
+    }
+
+    #cart-amount .Cart .bag-handle {
+        border: 2px solid @color-primary;
+    }
+
+}
+
+/* --- Faceted Search --- */
+
+.facet-container {
+    border-top: @border-style;
+    
+    [class^="js-facet-clear"] {
+        color: lighten(@color-page-text, 40%);
+
+        &:hover {
+            color: lighten(@color-page-text, 20%);
+        }
+    }
+
+    .btn-facet-more-options.more {
+        color: @color-page-text;
+
+        &:hover {
+            color: @color-links;
+        }
+    }
+
+    .facet-option:hover {
+        background: @color-border;
+    }
+
+    .facet-option .facet-option-product-count {
+        color: lighten(@color-page-text, 40%);
+    }
+}
+
+.js-faceted-search-container > [class^='js-facet-']:last-of-type .facet-container {
+    border-bottom: @border-style;
+}

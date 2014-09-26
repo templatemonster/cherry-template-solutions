@@ -1,0 +1,270 @@
+%%Panel.DOCTYPE%%
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link href="%%GLOBAL_popupCssPath%%" type="text/css" rel="stylesheet" />
+		<script type="text/javascript" src="%%GLOBAL_jQueryPath%%"></script>
+		<title>%%GLOBAL_ProductName%%</title>
+		<script type="text/javascript" src="%%GLOBAL_CdnAppPath%%/javascript/jquery/plugins/jCarousel/jCarousel.js?%%GLOBAL_JSCacheToken%%"></script>
+
+		<script type="text/javascript">//<![CDATA[
+			var ThumbURLs = new Array();
+			var ImageDescriptions = new Array();
+			var currentImageIndex = '%%GLOBAL_CurrentImageIndex%%';
+			//if the image index is not variation then it should be a number
+			if(currentImageIndex != 'variation' && currentImageIndex != 'rule') {
+				currentImageIndex = parseInt(currentImageIndex);
+			}
+			var ProductMaxImageHeight = %%GLOBAL_ProductMaxImageHeight%%;
+			var ProductMaxImageWidth = %%GLOBAL_ProductMaxImageWidth%%;
+			var currentCarouselStart = 0;
+			var VariationImage = '%%GLOBAL_VariationImage%%';
+			var RuleImage = '%%GLOBAL_RuleImage%%';
+			var imagePreloader = new Image;
+			%%GLOBAL_ProdImageJavascript%%
+
+			function CloseImagePopup() {
+				if(parent.top.$('#fancy_close').attr('id')) {
+					parent.top.$('#fancy_close').trigger('click');
+				} else {
+					window.parent.focus();
+					window.close();
+				}
+			}
+
+			function showProductZoomImage(ImageIndex) {
+				if(ImageIndex=='variation' || ImageIndex == 'rule' || ThumbURLs[ImageIndex]) {
+
+					if(ImageDescriptions[ImageIndex]) {
+						$('.ProductImageDescription').html(ImageDescriptions[ImageIndex]);
+					}
+
+
+					$('.ProductImageDescription').html(ImageDescriptions[ImageIndex]);
+
+					imagePreloader = new Image;
+					if (ImageIndex == 'variation') {
+						imagePreloader.src = VariationImage;
+					} else if (ImageIndex == 'rule') {
+						imagePreloader.src = RuleImage;
+					} else {
+						imagePreloader.src = ThumbURLs[ImageIndex];
+					}
+					$(".ProductZoomImage").html('');
+
+					if (imagePreloader.complete) {
+						loadImageToContainer();
+					} else {
+						$(imagePreloader).unbind().bind('load', function() {
+							loadImageToContainer();
+						});
+					}
+
+					if(ImageIndex=='variation' || ImageIndex == 'rule') {
+						$('.Nav').hide();
+						$('.ImageCount').hide();
+						return;
+					}
+					$('.Nav').show();
+					$('.ImageCount').show();
+
+					//image on the left of the visible carousel list
+					if (ImageIndex < currentCarouselStart) {
+						$('#ImageScrollPrev').trigger('click');
+					}
+
+					//image on the right of the visible carousel list
+					if (ImageIndex > currentCarouselStart+9) {
+						$('#ImageScrollNext').trigger('click');
+					}
+
+					highlightProductTinyImage(ImageIndex);
+					if(ImageIndex >= ThumbURLs.length-1) {
+						$('.NextLink').addClass('disabled');
+					} else {
+						$('.NextLink').removeClass('disabled');
+					}
+
+					if(ImageIndex == 0) {
+						$('.PrevLink').addClass('disabled');
+					} else {
+						$('.PrevLink').removeClass('disabled');
+					}
+
+
+					$('.CurrentImageIndex').html(ImageIndex+1);
+					currentImageIndex = ImageIndex;
+				}
+				return false;
+			}
+
+
+			function loadImageToContainer() {
+				var w = $(window).width();
+				//less body margin 20
+				var h = $(window).height()-20;
+
+
+				//resize the image container if the window size is changed
+				var ImageBoxSize = getImageContainerSize();
+
+				if($(".ProductZoomImageBox").width() != ImageBoxSize[0] || $(".ProductZoomImageBox").height() != ImageBoxSize[1]) {
+					$(".ProductZoomImageBox").width(ImageBoxSize[0]);
+					$(".ProductZoomImageBox").height(ImageBoxSize[1]);
+				}
+
+				var wr = Math.min(ImageBoxSize[0], imagePreloader.width) / imagePreloader.width;
+				var hr = Math.min(ImageBoxSize[1], imagePreloader.height) / imagePreloader.height;
+
+				//resize the image
+				var r = Math.min(wr, hr);
+
+
+
+				var width = Math.round(r * imagePreloader.width);
+				var height = Math.round(r * imagePreloader.height);
+
+
+				$(".ProductZoomImage").width(width);
+				$(".ProductZoomImage").height(height);
+
+				$(".ProductZoomImage").html('<img src="'+imagePreloader.src+'"  width="'+width+'" height="'+height+'" alt="'+ImageDescriptions[currentImageIndex]+'" />');
+
+			}
+
+			function initiateImageCarousel()
+			{
+
+				var circular = true;
+				var visible = 10;
+				var buttonWidth = 0;
+
+				/*
+				* The general strategy here is to ensure that image carousel never exceeds the width of the viewport. The
+				* first step is to ensure that default number of visible images is not greater than the maximum amount of
+				* images that could be displayed on one line.
+				*
+				* The way the maximum amount of images on one line is calculated by dividing the width of the window by the
+				* width of a thumbnail (including the padding). Then one image is subtracted to ensure that the navigation
+				* arrows will display within the constraints of the viewport.
+				*/
+				visible = Math.min(visible, Math.floor($(window).width() / $(".ProductTinyImageList li").outerWidth())) - 1;
+
+				if(ThumbURLs.length <= visible) {
+					visible = ThumbURLs.length;
+				} else {
+					$("#ImageScrollPrev").show();
+					$("#ImageScrollNext").show();
+					buttonWidth = $("#ImageScrollPrev").width()*2 + 10;
+				}
+
+				var scroll = Math.round(visible);
+				$(".ProductTinyImageList").jCarouselLite({
+					btnNext: ".next",
+					btnPrev: ".prev",
+					visible: visible,
+					scroll: scroll,
+					circular: false,
+					speed: 200,
+					afterEnd: function(a) {
+						currentCarouselStart=parseInt($(a).find('img').attr('id').replace('TinyImage_', ''));
+					}
+				});
+
+				// IE 6 doesn't render the carousel properly, the following code is the fix for IE6
+				if($.browser.msie && $.browser.version.substr(0,1) == 6) {
+					$(".ProductTinyImageList").width($(".ProductTinyImageList").width()+4);
+					var liHeight = $(".ProductTinyImageList li").height();
+					$(".ProductTinyImageList").height(liHeight+2);
+				}
+
+				var TinyListWidth = $(".ProductTinyImageList").width();
+				$(".ImageCarousel").width(TinyListWidth+buttonWidth+20);
+				highlightProductTinyImage(currentImageIndex);
+			}
+
+
+			function getImageContainerSize() {
+				//Cache the size to avoid resizing images when a new one gets loaded
+				if (this.size) {
+					return this.size;
+				}
+
+				var CAROUSEL_CONTAINER_PADDING = 30;
+				var CAROUSEL_THUMB_PADDING     = 10;
+				var CAROUSEL_THUMB_HEIGHT      = %%GLOBAL_ProductTinyBoxHeight%% + CAROUSEL_THUMB_PADDING;
+				var NAV_PADDING                = 19;
+				var FRAME_PADDING              = 20;
+				var TITLE_PADDING              = 10;
+				var frameHeight;
+				var $fancyFrame                = $(window.parent.document.getElementById('fancy_content'));
+				var frameWidth                 = $(window).width();
+				var $carouselContainer         = $('.ProductTinyImageList');
+
+				if($fancyFrame.size() > 0) {
+					//Find the height of the Fancybox frame, calculating based off window height is inaccurate on iOS,
+					//perhaps because of https://github.com/jquery/jquery/pull/764
+					frameHeight = $fancyFrame.height();
+				} else {
+					frameHeight = $(window).height();
+				}
+
+				//If carousel container is reporting 0 height, use the height for its thumbnails instead
+				var carouselH = ( $carouselContainer.height() > 0 ? $carouselContainer.height() : CAROUSEL_THUMB_HEIGHT ) + CAROUSEL_CONTAINER_PADDING;
+				var imageCountH = $('.ImageCount').height();
+				var navH = $('.Nav').height() + NAV_PADDING;
+				var width = frameWidth - FRAME_PADDING;
+				var height = frameHeight - carouselH - imageCountH - navH;
+
+				//The window won't always be initialized all the way, so ensure it has some size before calculating
+				if(width > 0 && height > 0) {
+					this.size = [width, height];
+				} else {
+				    return [0,0];
+				}
+
+				return this.size;
+			}
+
+
+
+			function highlightProductTinyImage(ThumbIndex) {
+				$('.ProductTinyImageList li').attr('class', 'normal');
+				$('#TinyImageBox_'+ThumbIndex).attr('class', 'selected');
+			}
+
+
+			var loop=1;
+
+			function initiateImageGallery() {
+				var containerSize = getImageContainerSize();
+				var $productZoomImageBox = $('.ProductZoomImageBox');
+				var ANIMATION_TYPE = 'normal';
+
+				//The variable `loop` appears to be a tautology since this value is never incremented
+				if(loop <= 5 && (containerSize[0] <= 0 || containerSize[1] <= 0)){
+					//Looks like this is an ugly hack around a race condition, where the initial carousel thumbnails are set too large?
+					setTimeout(initiateImageGallery, 500);
+					return false;
+				}
+				$('.ImageCarousel').fadeIn(ANIMATION_TYPE);
+				$productZoomImageBox.fadeIn(ANIMATION_TYPE);
+				$productZoomImageBox.width(containerSize[0]);
+				$productZoomImageBox.height(containerSize[1]);
+
+				showProductZoomImage(currentImageIndex);
+				if(ThumbURLs.length <= 0) {
+					$(".Nav").hide();
+				} else {
+					initiateImageCarousel();
+				}
+			}
+
+			$(document).ready(function() {
+				initiateImageGallery();
+			});
+		//]]></script>
+	</head>
+	<body class="productImageLightbox">
+		%%Panel.ProductImagePopup%%
+	</body>
+</html>

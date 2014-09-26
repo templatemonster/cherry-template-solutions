@@ -1,0 +1,386 @@
+/**************************************************************************
+    < 1200px
+**************************************************************************/
+@media screen and (max-width: 1200px) {
+
+
+
+
+}
+
+
+
+/**************************************************************************
+    < 992px
+**************************************************************************/
+@media screen and (max-width: 992px) {
+
+/* Hide */
+.productOptionPreviewDisplay,
+.ExpressCheckoutBlockCompleted .ExpressCheckoutCompletedContent {display: none !important;}
+
+
+
+/* Layout */
+#home .ProductList li,
+.productPage .ProductList li {}
+
+.AddBillingAddress dd,
+.AddShippingAddress dd {margin-left: 180px;float: none;}
+
+
+
+/* Cart Styling */
+.ExpressCheckoutContent {margin-bottom: 20px;padding: 0;}
+.ExpressCheckoutContent > div {margin-bottom: 20px;}
+
+
+}
+
+
+
+
+
+
+
+
+/**************************************************************************
+    < 768px
+**************************************************************************/
+@media screen and (max-width: 768px) {
+
+/* Hide */
+#ProductBreadcrumb {display: none;}
+
+.Left {width: auto;float: none;}
+
+.CartContents > thead,
+.CartContents .CartThumb,
+.CartContents .CartItemIndividualPrice {display: none !important;}
+
+.ExpressCheckoutContent>.CreateAccount,
+.ExpressCheckoutContent>.AccountLogin {width:100%;display: block;}
+
+#ModalContainer .fastCartThumb,
+#ModalContainer .fastCartItemBox div,
+#ModalContainer .Quantity,
+#ModalContainer .fastCartBottom {display: none !important;}
+
+.SubCategoryList {display: none;}
+
+
+
+/* Show */
+.js-mobile-sub-category-menu {display: block;}
+
+
+
+/* Layout */
+#home .ProductList li,
+.productPage .ProductList li {}
+
+.ProductList li {}
+
+#ProductDetails .left-content {width: auto;float: none;}
+
+.PrimaryProductDetails .ProductMain {width: auto;float: none;padding: 0 0 20px 0;}
+
+.footer-columns .grid__item {width: 33.333333%;text-align: center;}
+.footer-columns .grid__item:last-child {width: 100%;text-align: center;}
+
+.footer-main .inner {padding: 20px 0 0 0;}
+
+#AjaxLoading {background-color: rgba(0,0,0,.7);top: 0;left: 0;bottom: 0;right: 0;}
+
+#AjaxLoading .ajax-loader {margin-top: -16px;position: absolute;top: 50%;left: 0;right: 0;}
+
+#ModalOverlay {background-color: #000;
+opacity: 0.7 !important;
+}
+
+.productlist-page .CategoryContent {padding: 0;}
+
+.fastCartThumb,
+.fastCartItemBox,
+.fastCartSummaryBox {width: 100%;float: none;}
+
+#ModalContainer {width: auto !important;margin-left: 0 !important;background-color: #fff;top: 10px !important;right: 10px !important;bottom: 10px !important;left: 10px !important;}
+
+#ModalContainer .fastCartTop {padding: 0;}
+
+#ModalContainer .fastCartItemBox {padding: 0;text-align: center;}
+
+#ModalContainer .fastCartSummaryBox {overflow: hidden;float: none;margin: 0 auto;}
+
+.login-form .one-half {width: 100%;}
+
+.login-form .CreateAccount {margin-bottom: 20px;}
+
+.header-secondary {clear: both;float: none;}
+
+
+
+.header-secondary .QuickSearch {border-top-width: 0 !important;}
+    
+    
+    
+.DetailRow.qty .selector {margin: 0;}
+    
+    
+    
+.productPage #fancy_outer {top: 9px !important;right: 9px !important;bottom: 9px !important;left: 9px !important;}
+
+
+.productImageLightbox .ImageCarousel {display: none !important;}
+
+
+
+/* Multipage Cart Styling */
+.TabNav {margin: 0;padding: 0;border-bottom: 0;font-size: 0;}
+.TabNav li {width: 100%;text-align: center;}
+.TabNav li a {margin: 0;
+-webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+        box-sizing: border-box;
+}
+
+}
+
+
+
+/**************************************************************************
+    < 600px
+**************************************************************************/
+@media screen and (max-width: 600px) {
+
+/* Hide */
+#shareDescription {display: none;}
+
+
+
+/* Layout */
+.ProductList li,
+#home .ProductList li,
+.productPage .ProductList li {width: 50%;}
+
+.addto .BulkDiscount,
+.addto #SideProductAddToWishList {display: block;}
+
+.CartCode .CouponCode,
+.CartCode .GiftCertificate {width: auto;float: none;}
+
+.ProceedToCheckout,
+.KeepShopping {text-align: center;}
+
+
+
+/* Adjusting the size of the swatches for smaller screens */
+.productOptionViewRectangle .option label {width: 60px;height: 60px;padding: 0 !important;line-height: 60px;}
+
+.productOptionPickListSwatch .textureContainer,
+.productOptionPickListSwatch .swatchColours {display: block !important;}
+
+.productOptionPickListSwatch .thumbnail,
+.productOptionPickListSwatch .swatchColour {width: 60px !important;height: 60px !important;display: block !important;}
+
+
+
+/* Selector was .productOptionPickListSwatch li but had to make more specific to overwrite __Master */
+html.javascript div.productOptionPickListSwatch li {display: inline-block;}
+
+#tabcontent .photo {width: auto;float: none;margin: 0;}
+
+.BillingDetails,
+.ShippingDetails {width: 100%;float: none;margin-right: 0;padding-top: 15px;}
+
+.ShippingAddressList li {width: 50%;}
+
+.CartContents tfoot .CheckoutRedeemCoupon {text-align: left;}
+.CartContents tfoot .CheckoutRedeemCoupon td {padding: 0;}
+
+
+
+
+
+/* Quick view */
+.quick-view-image-container {width: auto !important;float: none !important;
+/* Fix: Added important because we can't control the cascade. When we can place responsive.css below product.quickview.css we can remove the importants. */
+}
+
+}
+
+
+
+/**************************************************************************
+    < 480px
+**************************************************************************/
+@media screen and (max-width: 480px) {
+
+/* Hide */
+.cart-detail-metadata,
+.TopMenu,
+.PageMenu,
+.QuickViewBtn,
+.sf-menu li > ul,
+.productlist-page .Left,
+.ProductCompareButton,
+.CompareButton,
+.footer-columns .BrandList,
+.footer-columns .CategoryList {display: none !important;}
+
+
+
+/* Show */
+.header-secondary {display: block !important;}
+
+#ToggleMenu,
+#cart-amount {display: table-cell;}
+
+
+
+/* Layout */
+.ProductList li,
+#home .ProductList li,
+.productPage .ProductList li {width: 100%;}
+
+.TopMenu > .inner,
+#Header > .inner,
+.PageMenu > .inner,
+.main > .inner,
+.footer-main > .inner,
+.footer-links > .inner,
+.newsletter-subscription > .inner {width: 90%;}
+
+
+
+/*
+#Header {width: 100%;background-color: #fff;border-bottom: 1px solid #efefef;position: fixed;top: 0;z-index: 100;}
+#Header > .inner {width: 100%;display: table;padding-top: 50px;}
+
+.header-secondary {width: 100%;float: none;background: #111;position: absolute;top: 0;left: 0;}
+.header-secondary .currency-converter {display: none;}
+.header-secondary #SearchForm {float: none;}
+.header-secondary #SearchForm input.Textbox {height: 50px;background: none;border: 0;color: #d6d6d6;}
+.header-secondary #SearchForm input.Button {height: 100%;background-color: transparent;border: 0;position: absolute;}
+
+.header-logo {display: table-cell;overflow: hidden;vertical-align: middle;float: none;text-align: center;}
+.header-logo img {max-height: 60px;}
+.header-logo h1 {padding: 0;}
+*/
+
+
+
+#cart-amount {width: 60px;vertical-align: middle;}
+
+#cart-amount .Cart {width: 60px;display: block;padding: 1em 0px;font-weight: bold;text-align: center;position: relative;}
+#cart-amount .Cart .total {min-width: 25px;height: 25px;display: inline-block;margin: 0 auto;padding: 4px 5px;
+-webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+        box-sizing: border-box;
+}
+
+#cart-amount .Cart .bag-handle {width: 8px;height: 4px;border-bottom: 0;position: absolute;top: 8px;left: 24px;
+-webkit-border-radius: 7px 7px 0 0;
+   -moz-border-radius: 7px 7px 0 0;
+        border-radius: 7px 7px 0 0;
+}
+
+.PageMenu .inner {padding: 0;background: #fff;}
+.PageMenu .CategoryList {padding: 0;}
+.PageMenu .pages-menu {display: none;}
+.PageMenu ul {display: block;}
+.PageMenu li {display: block;margin: 0;padding: 0;border-bottom: 1px solid #efefef;}
+.PageMenu a {padding: 1em;font-size: 1.2em;}
+
+.SubCategoryList {margin-bottom: 0;}
+.SubCategoryList li {padding: 0.9em;background: none;border-bottom: 1px solid #efefef;}
+
+#fastCartContainer {max-height: none;}
+
+.footer-columns .grid__item,
+.CartCode .grid__item {width: 100%;}
+
+#fancy_outer {z-index: 110 !important;}
+#fancy_overlay {z-index: 105 !important;}
+
+.footer-links {text-align: center;}
+
+.footer .powered-by {display: block;float: none;margin-top: 10px;}
+
+.LittleNotePassword {margin-bottom: 20px;padding: 0;}
+
+
+
+/* Cart Styling */
+table.CartContents tbody tr td {padding: 10px 8px;}
+
+.CartCode .grid__item {width: 100%;}
+
+.CartCode .GiftCertificate input,
+.CartCode .CouponCode input {margin-bottom: 20px;}
+
+#CartContent .FloatRight,
+#CartContent .FloatLeft,
+.ExpressCheckoutContent .FloatLeft,
+.ExpressCheckoutContent .FloatRight
+#ConfirmOrder .FloatLeft,
+#ConfirmOrder .FloatRight {float: none;}
+
+.PayPalExpressCheckout {padding: 1em 0;text-align: center;}
+
+.AddBillingAddress dd,
+.AddShippingAddress dd {width: auto;float: none;padding: 0 !important;}
+
+.ShippingAddressList li {width: 100%;}
+
+}
+
+
+
+/**************************************************************************
+    BASE FORM STYLES - RESPONSIVE
+**************************************************************************/
+@media screen and (max-width: 480px) {
+
+/* increasing input font sizes to avoid some zoom by webkit browsers */
+input[type="date"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+input[type="search"],
+input[type="tel"],
+input[type="text"],
+input[type="url"],
+textarea,
+select {font-size: 16px !important;}
+
+
+.btns {float: none;text-align:center;position: initial;}
+.btns form {width: 50%;}
+
+
+/*.btn,*/
+textarea,
+input[type="email"],
+input[type="text"],
+input[type="password"],
+input.Textbox {height: 35px;display: block;margin-bottom: 20px;line-height: 33px;
+-webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+        box-sizing: border-box;
+}
+
+.btns form .btn {width:95%;display: inline-block;}
+
+
+select,
+div.selector /* For uniform */ {margin-bottom: 20px;}
+
+/* Form Styling */
+.form dt,
+.FormContainer dt {width: auto;clear: both;float: none;text-align: left;}
+
+.form dd,
+.FormContainer dd {margin: 0;padding: 0;}
+
+}
