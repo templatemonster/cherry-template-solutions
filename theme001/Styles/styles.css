@@ -40,6 +40,10 @@ hr {height: 1px;margin: 20px 0;padding: 0;background: none;border-width: 1px 0 0
 
 
 
+.SuccessMessage, .ErrorMessage, .InfoMessage {margin: 20px 0;}
+
+
+
 /********** Layout **********/
 .inner:after {content: "";display: table;clear: both;}
 
@@ -91,7 +95,7 @@ select {margin: 0;padding: 9px;
 
 
 /********** horizontal forms **********/
-.HorizontalFormContainer {max-width: 1000px;}
+.HorizontalFormContainer {}
 
 .HorizontalFormContainer dl,
 .VerticalFormContainer dl {margin: 0;}
@@ -238,6 +242,7 @@ h5, .h5 {padding: 0 0 20px 0;font-weight: bold;font-size: 14px;}
 /********** Left content **********/
 .Left {text-transform: uppercase;}
 
+.Left h2,
 .Left h3 {padding: 0 0 10px 0;color: #7e7a7d;}
 
 .Left .BlockContent {margin: 0;}
@@ -522,7 +527,7 @@ color: @primary-color;
 padding: 12px 5px 0 0;
 }
 
-.CompareButton {margin: 30px 0 0 0;text-align: right;}
+.CompareButton {margin: 30px 0 0 0 !important;text-align: right;}
 
 .Required {
 color: #ff0000;
@@ -618,7 +623,7 @@ padding:5px 10px 5px 10px;
 }
 
 .CompareCenter {
-padding: 5px;
+
 }
 
 .CompareRating {
@@ -841,10 +846,7 @@ font-size: 0.9em;
 clear: both;
 }
 
-.ProductReviewList li {
-padding: 0 0 10px 0;
-border-bottom: 1px solid #dadada;
-}
+.ProductReviewList li {}
 
 .ProductReviewList li:last-child {
 border: 0;

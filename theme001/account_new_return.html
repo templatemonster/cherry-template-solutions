@@ -9,10 +9,10 @@
                     %%Panel.AccountNewReturnBreadcrumb%%
                     <h1 class="TitleHeading">%%LNG_SubmitNewReturn%%</h1>
                     <div class="full-width">
-                        <div class="Left" id="LayoutColumn1">
+                        <div class="Left col-sm-3" id="LayoutColumn1">
                             %%Panel.SideAccountMenu%%
                         </div>
-                        <div class="Content" id="LayoutColumn2">
+                        <div class="Content col-sm-9" id="LayoutColumn2">
                             <form action="%%GLOBAL_ShopPath%%/account.php?action=save_new_return" method="post" onsubmit="return check_return_form()">
                                 <input type="hidden" name="order_id" value="%%GLOBAL_OrderId%%" />
                                 <div class="Block">

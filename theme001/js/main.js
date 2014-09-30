@@ -260,11 +260,14 @@ $(document).ready(function() {
 $(".ProductList").addClass("row products_listing_main");
 $(".ProductList li").wrapInner( "<div class='item'></div>" ).addClass("col-sm-4");
 $(".ProductList li:nth-child(3n+1)").addClass("clr");
-$("#HomeFeaturedProducts .ProductList li,#HomeNewProducts .ProductList li,#SimilarProductsByCustomerViews .ProductList li,#SideProductRelated .ProductList li,.SearchContainer .ProductList li").removeClass("col-sm-4 clr");
+$("#HomeFeaturedProducts .ProductList li,#HomeNewProducts .ProductList li,#SimilarProductsByCustomerViews .ProductList li,#SideProductRelated .ProductList li").removeClass("col-sm-4 clr");
 $("#HomeFeaturedProducts .ProductList li > div,#HomeNewProducts .ProductList li > div").removeClass("item");
 $("#SimilarProductsByCustomerViews .ProductList li,#SideProductRelated .ProductList li,#SimilarMultiProductsByCustomerViews .ProductList li").removeClass("col-sm-4").addClass("col-sm-3");
 $(".productPage .ProductList li:nth-child(4n+1)").addClass("clr");
 $("#SimilarMultiProductsByCustomerViews .ProductList li").removeClass("clr");
+
+$(".SearchContainer .ProductList li").removeClass("col-sm-4").addClass("col-sm-3");
+$(".SearchContainer .ProductList li.ListView").removeClass("col-sm-4 clr");
 });
 
 
