@@ -44,7 +44,11 @@ h6 {font-size: 14px;}
 /********** right **********/
 .topmenu_right {text-align: right;}
 .topmenu_right .js-drawermenu-store-phone-container {float: right;}
-.topmenu_right .fa {display: inline-block;vertical-align: top;margin: 1px 1px 0 0;font-size: 15px;}
+.topmenu_right .phoneIcon {}
+.topmenu_right .fa {vertical-align: top;margin: 0 1px 0 0;font-size: 15px;position: relative;top: 2px;
+-webkit-transform: translateY(-2px);
+}
+.topmenu_right .js-drawermenu-store-phone {vertical-align: top;}
 
 
 /* currency selector */
@@ -159,10 +163,10 @@ display: none;
 
 
 /********** Logo **********/
-.header-logo {}
+.header-logo {padding-top: 94px;text-align: center;}
 .header-logo img {display: block;}
-.header-logo h1 {padding: 94px 0 0 0;font-weight: normal !important;font-size: 40px;text-align: center;letter-spacing: 8px;}
-.header-logo a {
+.header-logo h1 {padding: 0;font-weight: normal !important;font-size: 40px;letter-spacing: 8px;}
+.header-logo a {display: inline-block;
 -webkit-transition: color .3s ease-in-out;
    -moz-transition: color .3s ease-in-out;
     -ms-transition: color .3s ease-in-out;
@@ -384,7 +388,9 @@ filter: none;
 .footer-links a:hover {color: #b8b4b7;}
 
 .footer .powered-by {float: right;}
-.footer .powered-by a {width: 83px;height: 0;display: inline-block;overflow: hidden;vertical-align: middle;margin: 0 0 0 7px;padding: 20px 0 0 0;background: url('../images/bc_logo_sprite.png') 0 -50px no-repeat;}
+.footer .powered-by a {width: 83px;height: 0;display: inline-block;overflow: hidden;vertical-align: middle;margin: 0 0 0 7px;padding: 20px 0 0 0;background: url('../images/bc_logo_sprite.png') 0 -50px no-repeat;
+-webkit-transform: translateY(-1px);
+}
 .footer .powered-by a:hover {background-position: 0 -75px;}
 
 .newsletter-subscription {}
@@ -836,6 +842,10 @@ filter: none;
 #uniform-creditcard_ccexpm {min-width: 55px;width: 55px;}
 #uniform-creditcard_ccexpy {min-width: 70px;width: 70px;}
 dd em.ProductPrice {display: inline-block;margin: 7px 0 0 0;font-style: normal;font-size: 15px;color: #7e7a7d;}
+
+
+
+#uniform-giftwrapping_all {min-width: 290px;width: 290px;}
 
 
 

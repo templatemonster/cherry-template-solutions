@@ -1219,10 +1219,9 @@ width: 1px;
 
 .WrappingOptions {
 font-size: 11px;
-color: #666;
 margin-top: 6px;
 padding-left: 22px;
-background: url('../images/GiftWrappingAvailable.png') no-repeat;
+background: url('../images/GiftWrappingAvailable2.png') no-repeat;
 padding-bottom: 4px;
 line-height: 1.6;
 }
@@ -2398,13 +2397,12 @@ line-height: 20px;
 height: 33px;
 }
 
-.CartRemoveLink {
-float: right;
-width: 20px;
-height: 20px;
-margin-top: 2px;
-background: url(../images/icon_sprite.png) no-repeat -46px -46px;
-}
+
+
+.CartRemoveLink {float: right;margin: 1px 0 0 0;color: #c0bcbf;}
+.CartRemoveLink:before {content: '\f057';font: 17px/1em 'FontAwesome';}
+.CartRemoveLink:hover {color: #706d6f;}
+
 
 .SubTotal td {
 padding: 20px 0 0 0;
