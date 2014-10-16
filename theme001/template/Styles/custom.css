@@ -966,6 +966,8 @@ dd em.ProductPrice {display: inline-block;margin: 7px 0 0 0;font-style: normal;f
 
 .main > .inner {width: auto !important;}
 
+.header-logo {padding-top: 0;}
+
 /********** Top Menu **********/
 .TopMenu {display: none !important;}
 

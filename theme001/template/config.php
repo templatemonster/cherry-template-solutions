@@ -84,26 +84,26 @@ $GLOBALS['TPL_CFG']['Features']         = 1 | 2; // Theme::FEATURE_CAROUSEL | Th
 $GLOBALS['TPL_CFG']['RecommendedCategoryImageWidth']  = 180;
 $GLOBALS['TPL_CFG']['RecommendedCategoryImageHeight'] = 250;
 
-$GLOBALS['TPL_CFG']['ConfigDefaults']['ProductImagesStorewideThumbnail_width']       = 190;
-$GLOBALS['TPL_CFG']['ConfigDefaults']['ProductImagesStorewideThumbnail_height']      = 250;
+$GLOBALS['TPL_CFG']['ConfigDefaults']['ProductImagesStorewideThumbnail_width']       = 250;
+$GLOBALS['TPL_CFG']['ConfigDefaults']['ProductImagesStorewideThumbnail_height']      = 269;
 $GLOBALS['TPL_CFG']['ConfigDefaults']['ProductImagesStorewideThumbnail_timeChanged'] = time();
 
-$GLOBALS['TPL_CFG']['ConfigDefaults']['ProductImagesProductPageImage_width']       = 500;
-$GLOBALS['TPL_CFG']['ConfigDefaults']['ProductImagesProductPageImage_height']      = 659;
+$GLOBALS['TPL_CFG']['ConfigDefaults']['ProductImagesProductPageImage_width']       = 650;
+$GLOBALS['TPL_CFG']['ConfigDefaults']['ProductImagesProductPageImage_height']      = 650;
 $GLOBALS['TPL_CFG']['ConfigDefaults']['ProductImagesProductPageImage_timeChanged'] = time();
 
-$GLOBALS['TPL_CFG']['ConfigDefaults']['ProductImagesGalleryThumbnail_width']       = 40;
-$GLOBALS['TPL_CFG']['ConfigDefaults']['ProductImagesGalleryThumbnail_height']      = 53;
+$GLOBALS['TPL_CFG']['ConfigDefaults']['ProductImagesGalleryThumbnail_width']       = 150;
+$GLOBALS['TPL_CFG']['ConfigDefaults']['ProductImagesGalleryThumbnail_height']      = 150;
 $GLOBALS['TPL_CFG']['ConfigDefaults']['ProductImagesGalleryThumbnail_timeChanged'] = time();
 
-$GLOBALS['TPL_CFG']['ConfigDefaults']['ProductImagesZoomImage_width']       = 1280;
-$GLOBALS['TPL_CFG']['ConfigDefaults']['ProductImagesZoomImage_height']      = 1280;
+$GLOBALS['TPL_CFG']['ConfigDefaults']['ProductImagesZoomImage_width']       = 800;
+$GLOBALS['TPL_CFG']['ConfigDefaults']['ProductImagesZoomImage_height']      = 800;
 $GLOBALS['TPL_CFG']['ConfigDefaults']['ProductImagesZoomImage_timeChanged'] = time();
 
-$GLOBALS['TPL_CFG']['ConfigDefaults']['CustomersAlsoViewedCount'] = 5
-$GLOBALS['TPL_CFG']['ConfigDefaults']['HomeFeaturedProducts']     = 5;
-$GLOBALS['TPL_CFG']['ConfigDefaults']['HomeNewProducts']          = 5
-$GLOBALS['TPL_CFG']['ConfigDefaults']['CategoryProductsPerPage']  = 20;
+$GLOBALS['TPL_CFG']['ConfigDefaults']['CustomersAlsoViewedCount'] = 6
+$GLOBALS['TPL_CFG']['ConfigDefaults']['HomeFeaturedProducts']     = 4;
+$GLOBALS['TPL_CFG']['ConfigDefaults']['HomeNewProducts']          = 4
+$GLOBALS['TPL_CFG']['ConfigDefaults']['CategoryProductsPerPage']  = 6;
 
 $GLOBALS['TPL_CFG']['ConfigDefaults']['enableMobileTemplate'] = !$GLOBALS['TPL_CFG']['Responsive'];
 $GLOBALS['TPL_CFG']['ConfigDefaults']['SocialMedia_UseThemeIcons'] = 1;
