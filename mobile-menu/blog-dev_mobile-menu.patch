@@ -1,0 +1,596 @@
+diff --git a/assets/css/dynamic/site/menus.css b/assets/css/dynamic/site/menus.css
+index 38f134c..62f3d1a 100644
+--- a/assets/css/dynamic/site/menus.css
++++ b/assets/css/dynamic/site/menus.css
+@@ -56,3 +56,7 @@
+ .footer-menu__items li.current_page_item a {
+ 	color: $regular_text_color;
+ }
++
++.menu-toggle[aria-controls="main-menu"] {
++	background: @darken( $regular_accent_color_3, 15% );
++}
+diff --git a/assets/js/theme-script.js b/assets/js/theme-script.js
+index eea49bb..615d3fb 100644
+--- a/assets/js/theme-script.js
++++ b/assets/js/theme-script.js
+@@ -31,6 +31,7 @@
+ 			self.subscribe_init( self );
+ 			self.main_menu( self, $( '.main-navigation' ) );
+ 			self.to_top_init( self );
++			self.mobile_menu( self );
+ 		},
+ 
+ 		window_load_render: function ( self ) {
+@@ -398,7 +399,7 @@
+ 			init = function() {
+ 				var $mainNavigation = $( '.main-navigation' ),
+ 					$mainMenu = $( 'ul.menu', $mainNavigation ),
+-					$menuToggle = $( '.menu-toggle', $mainNavigation ),
++					$menuToggle = $( '.menu-toggle[aria-controls="main-menu"]' ),
+ 					$liWithChildren = $( 'li.menu-item-has-children, li.page_item_has_children', menu ),
+ 					$self;
+ 
+@@ -454,14 +455,108 @@
+ 					} );
+ 				}
+ 
+-				$menuToggle.on( 'click', function(){
+-					$mainNavigation.toggleClass( 'toggled' );
++				$menuToggle.on( 'click', function( $event ) {
++					$event.preventDefault();
++
++					setTimeout( function() {
++						if ( ! $mainNavigation.hasClass( 'animate' ) ) {
++							$mainNavigation.addClass( 'animate' );
++						}
++						$mainNavigation.toggleClass( 'show' );
++						$( 'html' ).toggleClass( 'mobile-menu-active' );
++					}, 10 );
++
++					$menuToggle.attr( 'aria-expanded', ! $menuToggle.hasClass( 'toggled' ) );
++					$menuToggle.toggleClass( 'toggled' );
+ 				});
+ 			};
+ 
+ 			init();
+ 		},
+ 
++		mobile_menu: function( self ) {
++			var $mainNavigation = $( '.main-navigation' ),
++				$menuToggle = $( '.menu-toggle[aria-controls="main-menu"]' );
++
++			$mainNavigation
++				.find( 'li.menu-item-has-children > a' )
++				.after( '<a href="#" class="sub-menu-toggle"></a>' );
++
++			/**
++			 * Debounce the function call
++			 *
++			 * @param  {number}   threshold The delay.
++			 * @param  {Function} callback  The function.
++			 */
++			function debounce( threshold, callback ) {
++				var timeout;
++
++				return function debounced( $event ) {
++					function delayed() {
++						callback( $event );
++						timeout = null;
++					}
++
++					if ( timeout ) {
++						clearTimeout( timeout );
++					}
++
++					timeout = setTimeout( delayed, threshold );
++				};
++			}
++
++			/**
++			 * Resize event handler.
++			 *
++			 * @param {jqEvent} jQuery event.
++			 */
++			function resizeHandler( $event ) {
++				var $window = CherryJsCore.variable.$window,
++					width = $window.outerWidth( true );
++
++				if ( 768 <= width ) {
++					$mainNavigation.removeClass( 'mobile-menu' );
++				} else {
++					$mainNavigation.addClass( 'mobile-menu' );
++				}
++			}
++
++			/**
++			 * Toggle sub-menus.
++			 *
++			 * @param  {jqEvent} $event jQuery event.
++			 */
++			function toggleSubMenuHandler( $event ) {
++				var $subMenu = $( this );
++
++				$subMenu.toggleClass( 'active' );
++				$subMenu.parent().toggleClass( 'sub-menu-open' );
++			}
++
++			/**
++			 * Toggle menu.
++			 *
++			 * @param  {jqEvent} $event jQuery event.
++			 */
++			function toggleMenuHandler( $event ) {
++				var $toggle = $( this );
++
++				$event.preventDefault();
++
++				$mainNavigation.toggleClass( 'active' );
++
++				if ( $toggle.hasClass( 'active' ) ) {
++					$toggle.removeClass( 'active' );
++					$mainNavigation.find( '.sub-menu-open' ).removeClass( 'sub-menu-open' );
++				}
++			}
++
++			resizeHandler();
++			CherryJsCore.variable.$window.on( 'resize orientationchange', debounce( 500, resizeHandler ) );
++			$mainNavigation.on( 'click', '.sub-menu-toggle', toggleSubMenuHandler );
++			$menuToggle.on( 'click', toggleMenuHandler );
++		},
++
+ 		page_preloader_init: function ( self ) {
+ 
+ 			if ( $( '.page-preloader-cover' )[0] ) {
+diff --git a/assets/sass/navigation/_main-menu.scss b/assets/sass/navigation/_main-menu.scss
+index e39ec9b..6115260 100644
+--- a/assets/sass/navigation/_main-menu.scss
++++ b/assets/sass/navigation/_main-menu.scss
+@@ -114,13 +114,9 @@
+ 				top: 20%;
+ 			}
+ 		}
+-		.menu-toggle {
+-			display: none;
+-		}
+ 	}
+ }
+ 
+-
+ /* Skin */
+ .main-navigation {
+ 	a {
+@@ -239,6 +235,38 @@
+ 			}
+ 		}
+ 	}
++
++	&.mobile-menu {
++		@include media-breakpoint-down(md) {
++			position: fixed;
++			top: 0;
++			left: 0;
++			right: 0;
++			bottom: 0;
++			z-index: 997;
++			background: #fff;
++			transform: translateX(-100%);
++			padding-top: 3.3em;
++
++			& > .menu {
++				max-height: 100%;
++				overflow-x: hidden;
++				overflow-y: auto;
++			}
++
++			&.animate {
++				transition: transform .2s linear;
++			}
++
++			&.show {
++				transform: translateX(0);
++			}
++
++			& > .menu {
++				display: block;
++			}
++		}
++	}
+ }
+ 
+ /* Menu items description */
+@@ -252,9 +280,120 @@
+ }
+ 
+ /* Toogle button */
+-.menu-toggle {
++.menu-toggle[aria-controls="main-menu"] {
++	display: none;
+ 	padding: .5em;
++
++	@include media-breakpoint-down(sm) {
++		display: inline-block;
++		position: absolute;
++		top: 0;
++		left: 0;
++		z-index: 998;
++		margin: 3px 0 0 3px;
++		border-width: 0;
++		border-radius: 4px;
++	}
++
+ 	&__icon {
+ 		vertical-align: top;
+ 	}
++
++	&.toggled {
++		.menu-toggle__icon {
++			display: none;
++
++			&[data-alt] {
++				display: inline-block;
++			}
++		}
++	}
++
++	&:not(.toggled) {
++		.menu-toggle__icon {
++			display: inline-block;
++
++			&[data-alt] {
++				display: none;
++			}
++		}
++	}
++}
++
++.admin-bar {
++	.menu-toggle[aria-controls="main-menu"] {
++		@include media-breakpoint-down(sm) {
++			top: 46px;
++		}
++	}
++
++	.mobile-menu {
++		top: 46px;
++	}
++}
++
++html.mobile-menu-active {
++	&,
++	body {
++		overflow: hidden;
++	}
++
++	.site-content,
++	.site-footer {
++		display: none;
++	}
++
++	.menu-toggle[aria-controls="main-menu"] {
++		position: fixed;
++	}
++}
++
++a.sub-menu-toggle {
++	display: none;
++	position: absolute;
++	top: 0;
++	bottom: 0;
++	right: 0;
++	z-index: 995;
++	width: 3rem;
++	height: 3rem;
++	border: 0;
++}
++
++.mobile-menu {
++	@include media-breakpoint-down(sm) {
++		a.sub-menu-toggle {
++			display: block;
++		}
++
++		.menu-item-has-children > .sub-menu {
++			display: none;
++		}
++
++		.sub-menu-open > .sub-menu {
++			display: block;
++		}
++
++		li.menu-item-has-children {
++			&::after {
++				transform: rotate(0deg);
++			}
++
++			&.sub-menu-open::after {
++				transform: rotateX(180deg) rotateY(0deg) rotateZ(0deg);
++				transform-style: preserve-3d;
++			}
++		}
++
++		.sub-menu li.menu-item-has-children {
++			&::after {
++				transform: rotate(90deg);
++			}
++
++			&.sub-menu-open::after {
++				transform: rotateX(180deg) rotateY(0deg) rotateZ(90deg);
++				transform-style: preserve-3d;
++			}
++		}
++	}
+ }
+diff --git a/inc/template-menu.php b/inc/template-menu.php
+index f6ed58b..22d1370 100644
+--- a/inc/template-menu.php
++++ b/inc/template-menu.php
+@@ -6,6 +6,21 @@
+  */
+ 
+ /**
++ * Show menu button.
++ *
++ * @since  1.1.0
++ * @param  string $menu_id Menu ID.
++ * @return void
++ */
++function __tm_menu_toggle( $menu_id ) { ?>
++	<button class="menu-toggle" aria-controls="<?php echo esc_attr( $menu_id ) ?>" aria-expanded="false">
++		<i class="menu-toggle__icon material-icons">subject</i>
++		<i class="menu-toggle__icon material-icons" data-alt>clear</i>
++	</button>
++<?php
++}
++
++/**
+  * Show main menu.
+  *
+  * @since  1.0.0
+@@ -13,9 +28,6 @@
+  */
+ function __tm_main_menu() { ?>
+ 	<nav id="site-navigation" class="main-navigation" role="navigation">
+-		<button class="menu-toggle" aria-controls="main-menu" aria-expanded="false">
+-			<i class="menu-toggle__icon material-icons">subject</i>
+-		</button>
+ 		<?php
+ 			$args = apply_filters( '__tm_main_menu_args', array(
+ 				'theme_location'   => 'main',
+diff --git a/style.css b/style.css
+index 9c1bd0d..7ef7a38 100644
+--- a/style.css
++++ b/style.css
+@@ -2415,9 +2415,6 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+   .main-navigation .sub-menu ul {
+     top: 20%;
+   }
+-  .main-navigation .menu-toggle {
+-    display: none;
+-  }
+ }
+ 
+ /* Skin */
+@@ -2531,6 +2528,40 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+   }
+ }
+ 
++@media (max-width: 991px) {
++  .main-navigation.mobile-menu {
++    position: fixed;
++    top: 0;
++    left: 0;
++    right: 0;
++    bottom: 0;
++    z-index: 997;
++    background: #fff;
++    -webkit-transform: translateX(-100%);
++    -ms-transform: translateX(-100%);
++    transform: translateX(-100%);
++    padding-top: 3.3em;
++  }
++  .main-navigation.mobile-menu > .menu {
++    max-height: 100%;
++    overflow-x: hidden;
++    overflow-y: auto;
++  }
++  .main-navigation.mobile-menu.animate {
++    transition: -webkit-transform .2s linear;
++    transition: transform .2s linear;
++    transition: transform .2s linear, -webkit-transform .2s linear;
++  }
++  .main-navigation.mobile-menu.show {
++    -webkit-transform: translateX(0);
++    -ms-transform: translateX(0);
++    transform: translateX(0);
++  }
++  .main-navigation.mobile-menu > .menu {
++    display: block;
++  }
++}
++
+ /* Menu items description */
+ .menu-item__desc {
+   font-size: 10px;
+@@ -2544,14 +2575,114 @@ h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+ }
+ 
+ /* Toogle button */
+-.menu-toggle {
++.menu-toggle[aria-controls="main-menu"] {
++  display: none;
+   padding: .5em;
+ }
+ 
+-.menu-toggle__icon {
++@media (max-width: 767px) {
++  .menu-toggle[aria-controls="main-menu"] {
++    display: inline-block;
++    position: absolute;
++    top: 0;
++    left: 0;
++    z-index: 998;
++    margin: 3px 0 0 3px;
++    border-width: 0;
++    border-radius: 4px;
++  }
++}
++
++.menu-toggle[aria-controls="main-menu"]__icon {
+   vertical-align: top;
+ }
+ 
++.menu-toggle[aria-controls="main-menu"].toggled .menu-toggle__icon {
++  display: none;
++}
++
++.menu-toggle[aria-controls="main-menu"].toggled .menu-toggle__icon[data-alt] {
++  display: inline-block;
++}
++
++.menu-toggle[aria-controls="main-menu"]:not(.toggled) .menu-toggle__icon {
++  display: inline-block;
++}
++
++.menu-toggle[aria-controls="main-menu"]:not(.toggled) .menu-toggle__icon[data-alt] {
++  display: none;
++}
++
++@media (max-width: 767px) {
++  .admin-bar .menu-toggle[aria-controls="main-menu"] {
++    top: 46px;
++  }
++}
++
++.admin-bar .mobile-menu {
++  top: 46px;
++}
++
++html.mobile-menu-active,
++html.mobile-menu-active body {
++  overflow: hidden;
++}
++
++html.mobile-menu-active .site-content,
++html.mobile-menu-active .site-footer {
++  display: none;
++}
++
++html.mobile-menu-active .menu-toggle[aria-controls="main-menu"] {
++  position: fixed;
++}
++
++a.sub-menu-toggle {
++  display: none;
++  position: absolute;
++  top: 0;
++  bottom: 0;
++  right: 0;
++  z-index: 995;
++  width: 3rem;
++  height: 3rem;
++  border: 0;
++}
++
++@media (max-width: 767px) {
++  .mobile-menu a.sub-menu-toggle {
++    display: block;
++  }
++  .mobile-menu .menu-item-has-children > .sub-menu {
++    display: none;
++  }
++  .mobile-menu .sub-menu-open > .sub-menu {
++    display: block;
++  }
++  .mobile-menu li.menu-item-has-children::after {
++    -webkit-transform: rotate(0deg);
++    -ms-transform: rotate(0deg);
++    transform: rotate(0deg);
++  }
++  .mobile-menu li.menu-item-has-children.sub-menu-open::after {
++    -webkit-transform: rotateX(180deg) rotateY(0deg) rotateZ(0deg);
++    transform: rotateX(180deg) rotateY(0deg) rotateZ(0deg);
++    -webkit-transform-style: preserve-3d;
++    transform-style: preserve-3d;
++  }
++  .mobile-menu .sub-menu li.menu-item-has-children::after {
++    -webkit-transform: rotate(90deg);
++    -ms-transform: rotate(90deg);
++    transform: rotate(90deg);
++  }
++  .mobile-menu .sub-menu li.menu-item-has-children.sub-menu-open::after {
++    -webkit-transform: rotateX(180deg) rotateY(0deg) rotateZ(90deg);
++    transform: rotateX(180deg) rotateY(0deg) rotateZ(90deg);
++    -webkit-transform-style: preserve-3d;
++    transform-style: preserve-3d;
++  }
++}
++
+ /*--------------------------------------------------------------
+ ## Footer Menu
+ --------------------------------------------------------------*/
+diff --git a/template-parts/header/layout-centered.php b/template-parts/header/layout-centered.php
+index ffe843b..e5c0888 100644
+--- a/template-parts/header/layout-centered.php
++++ b/template-parts/header/layout-centered.php
+@@ -8,9 +8,11 @@
+  */
+ ?>
+ 
++<?php __tm_menu_toggle( 'main-menu' ); ?>
++
+ <div class="site-branding">
+ 	<?php __tm_header_logo() ?>
+ 	<?php __tm_site_description(); ?>
+ </div>
+ 
+-<?php __tm_main_menu(); ?>
+\ No newline at end of file
++<?php __tm_main_menu(); ?>
+diff --git a/template-parts/header/layout-minimal.php b/template-parts/header/layout-minimal.php
+index 9bc65db..e7044b0 100644
+--- a/template-parts/header/layout-minimal.php
++++ b/template-parts/header/layout-minimal.php
+@@ -9,6 +9,7 @@
+ ?>
+ 
+ <div class="header-container__flex">
++	<?php __tm_menu_toggle( 'main-menu' ); ?>
+ 	<?php __tm_social_list( 'header' ); ?>
+ 	<div class="site-branding">
+ 		<?php __tm_header_logo() ?>
+diff --git a/template-parts/header/layout-transparent.php b/template-parts/header/layout-transparent.php
+index 13243e7..cccfcf4 100644
+--- a/template-parts/header/layout-transparent.php
++++ b/template-parts/header/layout-transparent.php
+@@ -9,6 +9,7 @@
+ ?>
+ 
+ <div class="header-container__flex">
++	<?php __tm_menu_toggle( 'main-menu' ); ?>
+ 	<?php __tm_social_list( 'header' ); ?>
+ 	<div class="site-branding">
+ 		<?php __tm_header_logo() ?>
+diff --git a/template-parts/header/layout.php b/template-parts/header/layout.php
+index 5cce940..aa1733e 100644
+--- a/template-parts/header/layout.php
++++ b/template-parts/header/layout.php
+@@ -8,6 +8,7 @@
+  */
+ ?>
+ 
++<?php __tm_menu_toggle( 'main-menu' ); ?>
+ <?php __tm_social_list( 'header' ); ?>
+ 
+ <div class="site-branding">
+diff --git a/template-parts/header/top-panel.php b/template-parts/header/top-panel.php
+index 8eba922..2cbc54d 100644
+--- a/template-parts/header/top-panel.php
++++ b/template-parts/header/top-panel.php
+@@ -18,4 +18,4 @@ if ( ! __tm_is_top_panel_visible() ) {
+ 		__tm_top_search( '<div class="top-panel__search">%s</div>' );
+ 		__tm_top_menu();
+ 	?></div>
+-</div><!-- .top-panel -->
+\ No newline at end of file
++</div><!-- .top-panel -->
